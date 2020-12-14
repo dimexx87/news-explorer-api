@@ -69,7 +69,7 @@ const signin = (req, res, next) => {
             const { _id } = user;
             return res.send({ token, _id });
           }
-          throw new UnauthorizedError('Неправильные почта или пароль!');
+          throw new UnauthorizedError('Неправильные почта или пароль');
         });
       })
       .catch(next);

@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../utils/constants');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const jwtSign = (id) => jwt.sign(
   {
     id,
   },
-  JWT_SECRET,
+  NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
   { expiresIn: '7d' },
 );
 
