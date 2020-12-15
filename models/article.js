@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const validator = require('validator');
 
 const articleSchema = new Schema(
   {
@@ -48,7 +47,7 @@ const articleSchema = new Schema(
       ref: 'user',
       required: true,
       select: false,
-    }
+    },
   },
   { versionKey: false },
 );

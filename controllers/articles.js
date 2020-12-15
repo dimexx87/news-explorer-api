@@ -1,10 +1,9 @@
-const bcrypt = require('bcrypt');
 const Article = require('../models/article');
 
 // constants
 const {
   OK_CODE,
-  CREATE_CODE
+  CREATE_CODE,
 } = require('../utils/constants');
 
 // errors
@@ -25,15 +24,19 @@ const getArticles = async (req, res, next) => {
 // post new article with parameters
 const createArticle = async (req, res, next) => {
   const { id } = req.user;
-  const { keyword, title, text, date, source, link, image } = req.body;
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
   try {
-    const article = await Article.create({ keyword, title, text, date, source, link, image, owner: id });
+    const article = await Article.create({
+      keyword, title, text, date, source, link, image, owner: id,
+    });
     if (!article) {
       throw new BadRequestError('Ошибка. Переданы некорректные данные');
     }
     res.status(CREATE_CODE).send({ article });
   } catch (err) {
-    next(err)
+    next(err);
   }
 };
 
@@ -60,5 +63,5 @@ const deleteArticle = async (req, res, next) => {
 module.exports = {
   getArticles,
   createArticle,
-  deleteArticle
+  deleteArticle,
 };

@@ -29,7 +29,7 @@ const userSchema = new Schema(
         },
         message: 'Используйте кириллический алфавит',
       },
-    }
+    },
   },
   { versionKey: false },
 );

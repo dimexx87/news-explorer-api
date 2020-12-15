@@ -14,7 +14,6 @@ const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 
-
 // get my user
 const getMeUser = async (req, res, next) => {
   const { id } = req.user;
@@ -81,5 +80,5 @@ const signin = (req, res, next) => {
 module.exports = {
   getMeUser,
   createUser,
-  signin
+  signin,
 };
