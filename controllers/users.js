@@ -13,6 +13,7 @@ const {
 const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
+const ConflictError = require('../errors/conflict-err');
 
 // get my user
 const getMeUser = async (req, res, next) => {
@@ -37,7 +38,7 @@ const createUser = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        throw new BadRequestError('Такой пользователь уже существует');
+        throw new ConflictError('Такой пользователь уже существует');
       }
       return bcrypt.hash(password, SALT_ROUND);
     })

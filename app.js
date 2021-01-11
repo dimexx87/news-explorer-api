@@ -9,7 +9,7 @@ const { errors, celebrate, Joi } = require('celebrate');
 
 // export from project
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const BadRequestError = require('./errors/bad-request-err');
+const NotFoundError = require('./errors/not-found-err');
 const auth = require('./middlewares/auth');
 const { createUser, signin } = require('./controllers/users');
 const rootRoutes = require('./routes/root');
@@ -39,7 +39,7 @@ app.post(
   '/signup',
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(3).max(30),
+      name: Joi.string().required().min(3).max(30),
       email: Joi.string().required().email(),
       password: Joi.string().required().min(3),
     }),
@@ -65,7 +65,7 @@ app.use(auth);
 // protected routes
 app.use('/', rootRoutes);
 app.use('*', () => {
-  throw new BadRequestError('Запрашиваемый ресурс не найден');
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 
 // error logger middleware
