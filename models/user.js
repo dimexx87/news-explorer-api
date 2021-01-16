@@ -23,12 +23,12 @@ const userSchema = new Schema(
       type: String,
       minlength: 2,
       maxlength: 30,
-      validate: {
-        validator(v) {
-          return /^[а-яА-ЯёЁ0-9]+$/.test(v);
-        },
-        message: 'Используйте кириллический алфавит',
-      },
+      // validate: {
+      //   validator(v) {
+      //     return /^[а-яА-ЯёЁ0-9]+$/.test(v);
+      //   },
+      //   message: 'Используйте кириллический алфавит',
+      // },
     },
   },
   { versionKey: false },

@@ -43,7 +43,7 @@ const createUser = (req, res, next) => {
       return bcrypt.hash(password, SALT_ROUND);
     })
     .then((hash) => {
-      User.create({ email, password: hash })
+      User.create({ name, email, password: hash })
         .then(({ _id }) => res.status(CREATE_CODE).send({ name, email, _id }))
         .catch(next);
     })
