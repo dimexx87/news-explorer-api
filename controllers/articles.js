@@ -13,8 +13,9 @@ const ForbiddenError = require('../errors/forbidden-err');
 
 // get all articles
 const getArticles = async (req, res, next) => {
+  const { id } = req.user;
   try {
-    const articles = await Article.find({});
+    const articles = await Article.find({ owner: id });
     res.status(OK_CODE).send(articles);
   } catch (err) {
     next(err);
